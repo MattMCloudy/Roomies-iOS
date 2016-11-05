@@ -14,7 +14,7 @@ class CalendarViewController: UIViewController {
     
     private let kKeychainItemName = "Roomies"
     private let kClientID = "597883647302-he11sqgja1gbmskp1prjr2fgunfe323g.apps.googleusercontent.com"
-    
+    // private let kClientID = "4/t0ENw_F_F1PffLKhXI_i0Pta4tup1Ywhq-GgoH12Hcg"
     // If modifying these scopes, delete your previously saved credentials by
     // resetting the iOS simulator or uninstall the app.
     private let scopes = [kGTLAuthScopeCalendarReadonly]
@@ -68,16 +68,17 @@ class CalendarViewController: UIViewController {
         service.executeQuery(
             query!,
             delegate: self,
-            didFinish: Selector(("displayResultWithTicket:finishedWithObject:error:"))
+            //didFinish: Selector(("displayResultWithTicket:finishedWithObject:error:"))
+            didFinish: #selector(displayResultWithTicket(ticket:finishedWithObject:error:))
         )
     }
     
     // Display the start dates and event summaries in the UITextView
-    func displayResultWithTicket(
+    func displayResultWithTicket (
         ticket: GTLServiceTicket,
         finishedWithObject response : GTLCalendarEvents,
         error : NSError?) {
-        
+    
         if let error = error {
             showAlert(title: "Error", message: error.localizedDescription)
             return
@@ -88,6 +89,7 @@ class CalendarViewController: UIViewController {
         if let events = response.items(), !events.isEmpty {
             for event in events as! [GTLCalendarEvent] {
                 let start : GTLDateTime! = event.start.dateTime ?? event.start.date
+                print(start)
                 let startString = DateFormatter.localizedString(
                     from: start.date,
                     dateStyle: .short,
@@ -100,19 +102,20 @@ class CalendarViewController: UIViewController {
         }
         
         output.text = eventString
+        //reloadInputViews()
     }
     
     
     // Creates the auth controller for authorizing access to Google Calendar API
     private func createAuthController() -> GTMOAuth2ViewControllerTouch {
-        let scopeString = scopes.joined(separator:)
+        let scopeString = scopes.joined(separator: "")
         return GTMOAuth2ViewControllerTouch(
             scope: scopeString,
             clientID: kClientID,
             clientSecret: nil,
             keychainItemName: kKeychainItemName,
             delegate: self,
-            finishedSelector: "viewController:finishedWithAuth:error:"
+            finishedSelector: Selector(("viewController:finishedWithAuth:error:"))
         )
     }
     
@@ -121,14 +124,15 @@ class CalendarViewController: UIViewController {
     func viewController(vc : UIViewController,
                         finishedWithAuth authResult : GTMOAuth2Authentication, error : NSError?) {
         
-        if let error = error {
+        if error != nil {
             service.authorizer = nil
-            showAlert("Authentication Error", message: error.localizedDescription)
+            showAlert(title: "Authentication Error", message: (error?.localizedDescription)!)
             return
         }
         
         service.authorizer = authResult
-        dismissViewControllerAnimated(_:completion:)
+        self.dismiss(animated: true, completion: nil)
+        
     }
     
     // Helper for showing an alert
@@ -144,9 +148,9 @@ class CalendarViewController: UIViewController {
             handler: nil
         )
         alert.addAction(ok)
-        presentViewController(_animted:completion:)
+        let vc = ViewController()
+        self.present(vc, animated:true, completion: nil)
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
