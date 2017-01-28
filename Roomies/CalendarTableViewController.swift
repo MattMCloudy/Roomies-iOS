@@ -10,7 +10,7 @@ import GoogleAPIClient
 import GTMOAuth2
 import UIKit
 
-class CalendarViewController: UIViewController {
+class CalendarTableViewController: UITableViewController {
     
     private let kKeychainItemName = "Roomies"
     private let kClientID = "597883647302-he11sqgja1gbmskp1prjr2fgunfe323g.apps.googleusercontent.com"
@@ -21,6 +21,11 @@ class CalendarViewController: UIViewController {
     
     private let service = GTLServiceCalendar()
     let output = UITextView()
+    
+    private var name = "this"
+    private var desc = "might"
+    private var when = "work"
+    
     
     // When the view loads, create necessary subviews
     // and initialize the Google Calendar API service
@@ -84,7 +89,6 @@ class CalendarViewController: UIViewController {
             return
         }
         
-        var eventString = ""
         
         if let events = response.items(), !events.isEmpty {
             for event in events as! [GTLCalendarEvent] {
@@ -95,13 +99,15 @@ class CalendarViewController: UIViewController {
                     dateStyle: .short,
                     timeStyle: .short
                 )
-                eventString += "\(startString) - \(event.summary)\n"
+                name = event.eTag
+                when = startString
+                desc = event.summary
+                
             }
         } else {
-            eventString = "No upcoming events found."
+            name = "No events found"
         }
         
-        output.text = eventString
         //reloadInputViews()
     }
     
@@ -133,6 +139,37 @@ class CalendarViewController: UIViewController {
         service.authorizer = authResult
         self.dismiss(animated: true, completion: nil)
         
+    }
+    
+    
+    
+    // MARK: - Table view data source
+    
+     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return 10
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CalendarTableCellViewController
+        
+        cell.eventName.text = name
+        cell.eventDatetime.text = when
+        cell.eventDescription.text = desc
+        
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Alert popup
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+        
+        self.tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // Helper for showing an alert

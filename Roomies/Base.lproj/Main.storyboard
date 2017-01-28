@@ -9,24 +9,62 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Calendar-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Item-->
+        <scene sceneID="mfi-lH-bGw">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="CalendarViewController" customModule="Roomies" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <tableViewController id="wtX-He-r74" customClass="CalendarTableViewController" customModule="Roomies" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="166" sectionHeaderHeight="28" sectionFooterHeight="28" id="paz-42-XdS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Calendar" id="tWg-fp-uC3"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="166" id="H8n-WY-8Oe" customClass="CalendarTableCellViewController" customModule="Roomies" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="166"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H8n-WY-8Oe" id="rEb-0R-jzx">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dc2-6B-PfS">
+                                            <rect key="frame" x="166" y="47" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kkp-Hw-Ioj">
+                                            <rect key="frame" x="166" y="91" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZW5-qS-9hP">
+                                            <rect key="frame" x="166" y="4" width="42" height="35"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="eventDatetime" destination="Kkp-Hw-Ioj" id="Nso-YS-p7y"/>
+                                    <outlet property="eventDescription" destination="ZW5-qS-9hP" id="ylu-bg-qBd"/>
+                                    <outlet property="eventName" destination="dc2-6B-PfS" id="11B-cj-gxE"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="wtX-He-r74" id="vfx-6M-mbp"/>
+                            <outlet property="delegate" destination="wtX-He-r74" id="FUa-SK-ZMb"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="mcr-Yf-RAV"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rsK-Fh-sJH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1046" y="-394"/>
+            <point key="canvasLocation" x="1741.5999999999999" y="-395.35232383808096"/>
         </scene>
         <!--Expenses-->
         <scene sceneID="4PC-UY-O54">
@@ -97,9 +135,9 @@
                     </tabBar>
                     <connections>
                         <segue destination="QpS-3O-cyx" kind="relationship" relationship="viewControllers" id="s8k-9l-B05"/>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="hAh-J4-moU"/>
                         <segue destination="Ffs-K0-l4N" kind="relationship" relationship="viewControllers" id="AEo-3y-q0L"/>
                         <segue destination="b7b-af-d7Q" kind="relationship" relationship="viewControllers" id="e4b-Ym-cIG"/>
+                        <segue destination="wtX-He-r74" kind="relationship" relationship="viewControllers" id="JLq-Gu-0Of"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2sJ-Js-SN9" userLabel="First Responder" sceneMemberID="firstResponder"/>
