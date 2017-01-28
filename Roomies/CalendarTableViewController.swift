@@ -22,9 +22,7 @@ class CalendarTableViewController: UITableViewController {
     private let service = GTLServiceCalendar()
     let output = UITextView()
     
-    private var name = "this"
-    private var desc = "might"
-    private var when = "work"
+    var events : [GTLCalendarEvent] = []
     
     
     // When the view loads, create necessary subviews
@@ -32,12 +30,12 @@ class CalendarTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        output.frame = view.bounds
-        output.isEditable = false
-        output.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
-        output.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        //output.frame = view.bounds
+        //output.isEditable = false
+        //output.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+        //output.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
-        view.addSubview(output);
+        //view.addSubview(output);
         
         if let auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychain(
             forName: kKeychainItemName,
@@ -91,7 +89,10 @@ class CalendarTableViewController: UITableViewController {
         
         
         if let events = response.items(), !events.isEmpty {
-            for event in events as! [GTLCalendarEvent] {
+            self.events = events as! [GTLCalendarEvent]
+            self.tableView.reloadData()
+            
+            /*for event in events as! [GTLCalendarEvent] {
                 let start : GTLDateTime! = event.start.dateTime ?? event.start.date
                 print(start)
                 let startString = DateFormatter.localizedString(
@@ -99,13 +100,13 @@ class CalendarTableViewController: UITableViewController {
                     dateStyle: .short,
                     timeStyle: .short
                 )
-                name = event.eTag
-                when = startString
-                desc = event.summary
+                names.append(event.eTag)
+                times.append(startString)
+                descs.append(event.summary)
                 
-            }
+            }*/
         } else {
-            name = "No events found"
+            //names.append("No events found")
         }
         
         //reloadInputViews()
@@ -146,16 +147,23 @@ class CalendarTableViewController: UITableViewController {
     // MARK: - Table view data source
     
      override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 10
+        return events.count
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CalendarTableCellViewController
         
-        cell.eventName.text = name
-        cell.eventDatetime.text = when
-        cell.eventDescription.text = desc
+        let event = self.events[indexPath.row]
+        
+        cell.eventName.text = event.eTag
+        cell.eventDatetime.text = event.start.dateTime.stringValue
+        cell.eventDescription.text = event.summary
+        
+        print("TRYING TO CREATE")
         
         
         return cell
