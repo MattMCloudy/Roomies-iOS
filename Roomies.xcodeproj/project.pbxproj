@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		10D04B361DC4264D00DB168F /* CalendarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D04B351DC4264D00DB168F /* CalendarTableViewController.swift */; };
+		10D7D69D1E3C339F00A70E78 /* InsertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D7D69C1E3C339F00A70E78 /* InsertViewController.swift */; };
 		10DEAF8A1DD6994B00E3BE5B /* CalendarTableCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DEAF891DD6994B00E3BE5B /* CalendarTableCellViewController.swift */; };
 		7E1769E11DC419B100EA7B1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1769E01DC419B100EA7B1E /* AppDelegate.swift */; };
 		7E1769E31DC419B100EA7B1E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1769E21DC419B100EA7B1E /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		10D04B351DC4264D00DB168F /* CalendarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTableViewController.swift; sourceTree = "<group>"; };
+		10D7D69C1E3C339F00A70E78 /* InsertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsertViewController.swift; sourceTree = "<group>"; };
 		10DEAF891DD6994B00E3BE5B /* CalendarTableCellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTableCellViewController.swift; sourceTree = "<group>"; };
 		2794CB297C84749E5189FD52 /* Pods_Roomies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Roomies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E1769DD1DC419B100EA7B1E /* Roomies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roomies.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +91,7 @@
 				7E1769E21DC419B100EA7B1E /* ViewController.swift */,
 				10D04B351DC4264D00DB168F /* CalendarTableViewController.swift */,
 				10DEAF891DD6994B00E3BE5B /* CalendarTableCellViewController.swift */,
+				10D7D69C1E3C339F00A70E78 /* InsertViewController.swift */,
 				7E1769E41DC419B100EA7B1E /* Main.storyboard */,
 				7E1769E71DC419B100EA7B1E /* Assets.xcassets */,
 				7E1769E91DC419B100EA7B1E /* LaunchScreen.storyboard */,
@@ -225,6 +228,7 @@
 				10D04B361DC4264D00DB168F /* CalendarTableViewController.swift in Sources */,
 				10DEAF8A1DD6994B00E3BE5B /* CalendarTableCellViewController.swift in Sources */,
 				7E1769E31DC419B100EA7B1E /* ViewController.swift in Sources */,
+				10D7D69D1E3C339F00A70E78 /* InsertViewController.swift in Sources */,
 				7E1769F51DC41E1F00EA7B1E /* ChatViewController.swift in Sources */,
 				7E1769E11DC419B100EA7B1E /* AppDelegate.swift in Sources */,
 			);
