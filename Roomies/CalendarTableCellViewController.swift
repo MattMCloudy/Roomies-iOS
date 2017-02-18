@@ -15,6 +15,7 @@ class CalendarTableCellViewController: UITableViewCell {
     
     @IBOutlet weak var eventDatetime: UILabel!
     
+    @IBOutlet weak var eventEndtime: UILabel!
     @IBOutlet weak var eventDescription: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
